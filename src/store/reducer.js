@@ -1,8 +1,9 @@
-import { decreaseCounterAction, increaseCounterAction } from './actions';
+import { decreaseCounterAction, increaseCounterAction, toggleCounterAction } from './actions';
 
 const initialState = {
-  counter: 0
-}
+  counter: 0,
+  showCounter: true,
+};
 
 export function counterReducer(state = initialState, action) {
   switch(action.type) {
@@ -15,6 +16,11 @@ export function counterReducer(state = initialState, action) {
       return {
         ...state, 
         counter: state.counter -1
+      };
+    case toggleCounterAction.type:
+      return {
+        ...state,
+        showCounter: !state.showCounter
       };
     default: 
       return state;

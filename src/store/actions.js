@@ -8,7 +8,13 @@ const decreaseCounterAction = {
   payload: null,
 }
 
+const toggleCounterAction = {
+  type: 'TOGGLE_COUNTER',
+  payload: null,
+}
+
 export {
   increaseCounterAction,
-  decreaseCounterAction
+  decreaseCounterAction,
+  toggleCounterAction
 };
