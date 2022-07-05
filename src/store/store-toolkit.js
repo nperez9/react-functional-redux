@@ -1,5 +1,4 @@
-import { decreaseCounterAction, toggleCounterAction, increaseCounterAction } from './actions';
-import { createSlice } from '@reduxjs/toolkit';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   counter: 0,
@@ -9,17 +8,29 @@ const initialState = {
 const counterSlice = createSlice({
   name: 'counter',
   initialState,
-  reducer: {
-    [increaseCounterAction.type]: (state) => {
+  reducers: {
+    // this will return an inmutate function 
+    increase(state) {
       state.counter++;
     },
-    [decreaseCounterAction.type]: (state) => {
+    decrease(state) {
       state.counter--;
     },
-    [toggleCounterAction.type]: (state) => {
+    toggleCounter(state) {
       state.showCounter = !state.showCounter;
+    },
+    increment(state, action) {
+      state.counter += action.payload;
     }
   }
 });
 
-export default counterSlice;
+// all the actions stores 
+
+const store = configureStore({
+  reducer: counterSlice.reducer,
+});
+
+export const counterActions = counterSlice.actions;
+
+export default store;
